@@ -90,6 +90,16 @@ public class Project implements Serializable {
 
     }
 
+    public Project(String name,Date endDate ){
+        this.name = name;
+        this.endDate = endDate;
+    }
+
+    public Project(String name,String clientID,Date endDate ){
+        this.name = name;
+        this.clientID = clientID;
+        this.endDate = endDate;
+    }
 
     public Status getStatus()
     {
@@ -99,6 +109,17 @@ public class Project implements Serializable {
     public void setStatus( Status status )
     {
         this.status = status;
+    }
+
+    public static Project draft(String name, Date endDate)
+    {
+      //  setName(name);
+        Project project = new Project(name,endDate);
+     //   this.setName(name);
+       // this.setEndDate(endDate);
+
+        //Project project = new Project(name,endDate) ;
+        return project;
     }
 
     public void start(String projectManagerId)

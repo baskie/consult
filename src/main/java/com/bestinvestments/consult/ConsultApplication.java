@@ -23,23 +23,23 @@ public class ConsultApplication {
         Client client = new Client("Client Name");
 
         System.out.println("DRAFT PROJECT:");
-        Draft draftProject = new Draft(client.getName(), date);
-        System.out.println(draftProject.getName());
-        System.out.println(draftProject.getEndDate());
+        Project project = Project.draft(client.getName(), date);
+        System.out.println(project.getName());
+        System.out.println(project.getEndDate());
 
 
-        System.out.println("NEW RESEARCH MANAGER:");
-        ResearchManager researchManager = new ResearchManager("Research Mgr Name","RMIS1234" );
-        System.out.println(researchManager.getName());
+        //System.out.println("NEW RESEARCH MANAGER:");
+        //ResearchManager researchManager = new ResearchManager("Research Mgr Name","RMIS1234" );
+        //System.out.println(researchManager.getName());
 
 
-        draftProject.setClientID("12 3456");
         System.out.println("ASSIGN CLIENT ID TO DRAFT:");
-        System.out.println(draftProject.getClientID());
+        project.setClientID("12 3456");
+       // System.out.println(project.getClientID());
 
         System.out.println("CREATE NEW PROJECT FROM DRAFT:");
 
-        Project project = new Project(draftProject.getName(),draftProject.getEndDate(),draftProject.getClientID(),Project.Status.DRAFT,"REF100000002");
+        project.setReference("REF100000001");
       //  Project project = new Project(draftProject.getName(),draftProject.getEndDate(),draftProject.getClientID(),Project.Status.CLOSED,"REF1234");
 
         System.out.println(project.getName());
@@ -50,10 +50,15 @@ public class ConsultApplication {
 
      //   ProjectManager projectManager = new ProjectManager("PM12345");
 
+        System.out.println("ACTIVATE PROJECT:");
+        project.setStatus(Project.Status.DRAFT);
+
         System.out.println("START PROJECT:");
         project.start("PM12345");
 
         System.out.println("ACTIVATE PROJECT:");
+        project.setStatus(Project.Status.ACTIVE);
+        //
         System.out.println(project.getStatus());
   //      System.out.println(project.getReference());
         System.out.println(project.getProjectManager().getProjectManagerID());
@@ -74,31 +79,12 @@ public class ConsultApplication {
 
         Project prevProj1 = GetProject.readProject("REF100000001");
         System.out.println("GOT PROJECT: "  + prevProj1.getReference());
-        Project prevProj2 = GetProject.readProject("REF100000002");
-        System.out.println("GOT PROJECT: "  + prevProj2.getReference());
+   //     Project prevProj2 = GetProject.readProject("REF100000002");
+     //   System.out.println("GOT PROJECT: "  + prevProj2.getReference());
         Project noPrevProj = GetProject.readProject("BADREF");
 
     }
 
-    @GetMapping("/printDraft")
-    public String printDraft() {
-        Date date = StringToDate("01-01-2020");
-        Draft draft = new Draft("My Name", date, "12 3456");
-
-        return String.format("Name: %s <br/>End Date: %s <br/>Client ID %s", draft.getName(),draft.getEndDate(),draft.getClientID());
-    }
-
-    @GetMapping("/draft")
-    public String draft(
-            @RequestParam(value = "name", defaultValue = "Anon") String inputName,
-            @RequestParam(value = "date", defaultValue = "01-01-2000") String dateString,
-            @RequestParam(value = "clientID", defaultValue = "000 0000") String inputClientID
-    ) {
-        Date date = StringToDate(dateString);
-        Draft draft = new Draft(inputName, date, inputClientID);
-        return String.format("Name: %s <br/>End Date: %s <br/>Client ID: %s", draft.getName(),draft.getEndDate(),draft.getClientID());
-
-    }
 
 
     public static Date StringToDate(String s){
