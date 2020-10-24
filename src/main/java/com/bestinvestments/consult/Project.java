@@ -12,8 +12,6 @@ public class Project implements Serializable {
         CLOSED
     }
 
-    Project() {
-    };
 
     private String name;
     private Date endDate;
@@ -37,11 +35,6 @@ public class Project implements Serializable {
         return name;
     };
 
-    public Date getEndDate(){
-
-        return endDate;
-    };
-
     public String getClientID(){
 
         return clientID;
@@ -55,16 +48,6 @@ public class Project implements Serializable {
     public ProjectManager getProjectManager(){
 
         return projectManager;
-    };
-
-    public void setName(String name){
-
-        this.name = name;
-    };
-
-    public void setEndDate(Date endDate){
-
-        this.endDate = endDate;
     };
 
     public void setClientID(String clientID){
@@ -91,7 +74,7 @@ public class Project implements Serializable {
         return discardedSpecialistIds;
     }
 
-
+/*
     public Project(String name, Date endDate, String clientID,Status status, String reference ){
         this.name = name;
         this.endDate = endDate;
@@ -100,17 +83,18 @@ public class Project implements Serializable {
         this.reference = reference;
 
     }
+        public Project(String name,String clientID,Date endDate ){
+        this.name = name;
+        this.clientID = clientID;
+        this.endDate = endDate;
+    }
 
+*/
     public Project(String name,Date endDate ){
         this.name = name;
         this.endDate = endDate;
     }
 
-    public Project(String name,String clientID,Date endDate ){
-        this.name = name;
-        this.clientID = clientID;
-        this.endDate = endDate;
-    }
 
     public Status getStatus()
     {

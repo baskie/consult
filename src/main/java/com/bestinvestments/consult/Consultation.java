@@ -28,13 +28,6 @@ public class Consultation {
         this.consultationDate = consultationDate;
     }
 
-    private Consultation(Integer id, String specialistId, Date consultationDate ,Status status ) {
-        id = id;
-        specialistId = specialistId;
-        consultationDate = consultationDate;
-        status = Status.OPEN;
-
-    }
 
     private Consultation(Integer id,String specialistId, Date consultationDate ) {
         id = id;
@@ -43,12 +36,21 @@ public class Consultation {
 
     }
 
+/*
     private Consultation(String specialistId, Date consultationDate ) {
         specialistId = specialistId;
         consultationDate = consultationDate;
 
     }
 
+    private Consultation(Integer id, String specialistId, Date consultationDate ,Status status ) {
+        id = id;
+        specialistId = specialistId;
+        consultationDate = consultationDate;
+        status = Status.OPEN;
+
+    }
+*/
 
     public enum Status{
         OPEN,
