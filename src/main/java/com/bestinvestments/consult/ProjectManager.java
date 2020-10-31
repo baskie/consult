@@ -9,6 +9,7 @@ public class ProjectManager implements Serializable {
     public String getName(){
         return name;
     };
+
     public String getProjectManagerID(){
         return projectManagerID;
     };
@@ -27,6 +28,4 @@ public class ProjectManager implements Serializable {
         this.name = name;
         this.projectManagerID = projectManagerID;
     }
-
-
 }

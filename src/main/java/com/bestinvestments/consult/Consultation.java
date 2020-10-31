@@ -11,11 +11,13 @@ public class Consultation {
     private Date consultationDate;
     private Consultation.Status status = Status.OPEN;
 
+    private Integer duration;
+    //TODO duration needs to be in HH:MM
+
     public Integer getDuration() {
         return duration;
     }
 
-    private Integer duration;
 
     private void setId(Integer id) {
         this.id = id;

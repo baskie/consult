@@ -32,6 +32,8 @@ public class Specialist implements Serializable {
     public Specialist(String specialistID ){
         this.specialistID = specialistID;
     }
+
+
     public Specialist(String name, String specialistID ){
         this.name = name;
         this.specialistID= specialistID;
