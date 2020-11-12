@@ -7,6 +7,11 @@ public class Consultation {
     private Integer id;
     private String  specialistId;
 
+    //Added here to enable clientId matching when attaching Consultations to Packages
+    private String clientId;
+    public static String getClientId(){
+        return clientId;
+    }
 
     private Date consultationDate;
     private Consultation.Status status = Status.OPEN;
