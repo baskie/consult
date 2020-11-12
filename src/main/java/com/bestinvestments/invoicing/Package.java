@@ -8,12 +8,12 @@ public class Package {
     private ClientId clientId;
     private PackageReference reference ;
     private PackageLength length ;
-    private Integer nominalHours;
+    private Double nominalHours;
     private PackageStatus status;
-    private Integer transferredInHours;
+    private Double transferredInHours;
 
 
-    private Package(ClientId clientId, Date startDate, PackageLength length, Integer nominalHours, String name)
+    private Package(ClientId clientId, Date startDate, PackageLength length, Double nominalHours, String name)
     {
         this.clientId = clientId;
         this.reference = new PackageReference(name,startDate,length);
@@ -22,19 +22,23 @@ public class Package {
         this.status = new PackageStatus(startDate,length);
     }
 
-    public static Package purchase(ClientId clientId,Date startDate,PackageLength length,Integer nominalHours, String name){
+    public static Package purchase(ClientId clientId,Date startDate,PackageLength length,Double nominalHours, String name){
         return new Package(clientId,startDate,length,nominalHours,name);
     }
 
-    public void attachConsultation(ClientId clientId, Integer length) throws Exception{
+    public void attachConsultation(ClientId clientId, Double length) throws Exception{
 
-        Integer availableHours = nominalHours + transferredInHours;
-        Integer remainingHours = availableHours + 0;//attached Consultations.length
+        Double availableHours = nominalHours + transferredInHours;
+        Double remainingHours = availableHours + 0;//TO DO attached Consultations.length
 
         if (!this.status.equals(PackageStatus.Status.ACTIVE)){
             throw new Exception("The package is not active.");
         }
-        if (remainingHours < length){
+
+        TimeIncrement timeIncrement = new TimeIncrement(length);
+        TimeIncrement r = new TimeIncrement(remainingHours);
+
+        if (timeIncrement.moreThan(r)){
             throw new Exception("There are not enough hours left on this Package to attach this Consultation.");
         }
 
